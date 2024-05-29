@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * shell_short -  implementation of a shell sort algorithm
+ * shell_sort -  implementation of a shell sort algorithm
  * @array: array to sort
  * @size: size of array
 */
