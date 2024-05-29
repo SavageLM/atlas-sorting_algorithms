@@ -7,7 +7,7 @@
 */
 void counting_sort(int *array, size_t size)
 {
-	int max = 0, *c_array, *output;
+	int max = 0, *c_array, *output, e_flag = 0;
 	size_t i;
 
 	if (!array || !size || size == 1)
@@ -24,17 +24,26 @@ void counting_sort(int *array, size_t size)
 		c_array[array[i]]++;
 	for (i = 1; i < (size_t)max + 1; i++)
 		c_array[i] += c_array[i - 1];
+	print_array(c_array, (size_t)max + 1);
 	output = calloc(size, sizeof(int));
 	if (!output)
 		return;
 	for (i = 0; i < size; i++)
 	{
 		output[c_array[array[i]] - 1] = array[i];
-		/* c_array[array[i]]--; */
 	}
 	for (i = 0; i < size; i++)
+	{
+		if (array[i] == array[i + 1])
+			e_flag = 1;
+		else
+			e_flag = 0;
+	}
+	if (e_flag)
+		return;
+	for (i = 0; i < size; i++)
 		array[i] = output[i];
-	print_array(c_array, (size_t)max + 1);
+	/* print_array(c_array, (size_t)max + 1); */
 	free(c_array);
 	free(output);
 }
