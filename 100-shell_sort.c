@@ -7,30 +7,37 @@
 */
 void shell_sort(int *array, size_t size)
 {
-	size_t i, j, increment, count = 0;
-	int tmp;
+	size_t i, j, inc = 1, count = 0;
+	int tmp, flag = 0;
 
-    for (increment = size / 2; increment > 0; increment /= 2)
+	while (inc < size)
+		inc = (3 * inc + 1);
+
+    for (; inc >= 1; inc = inc / 3)
 	{
-        for (i = increment; i < size; i++)
+        for (i = inc; i < size; i++)
 		{
             tmp = array[i];
-            for (j = i; j >= increment; j -= increment)
+            for (j = i; j >= inc; j -= inc)
 			{
-                if (tmp < array[j - increment])
-                    array[j] = array[j - increment];
+                if (tmp < array[j - inc])
+                    array[j] = array[j - inc];
                 else 
                     break;
             }
             array[j] = tmp;
         }
-		for (count = 0; count < size; count++)
+		if (flag)
 		{
-			if (count == 0)
-				printf("%d", array[count]);
-			else
-				printf(", %d", array[count]);
+			for (count = 0; count < size; count++)
+			{
+				if (count == 0)
+					printf("%d", array[count]);
+				else
+					printf(", %d", array[count]);
+			}
+			putchar('\n');
 		}
-		putchar('\n');
+		flag = 1;
 	}
 }
