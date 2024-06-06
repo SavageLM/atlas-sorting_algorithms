@@ -49,7 +49,7 @@ void merge(int *array, size_t left, size_t mid, size_t right)
 	for (i = 0; i < r_len; i++)
 		arr_r[i] = array[mid + 1 + i];
 	printf("[left]: "), print_array(arr_l, l_len);
-	printf("[Right]: "), print_array(arr_r, r_len);
+	printf("[right]: "), print_array(arr_r, r_len);
 	i = 0;
 	for (; idx <= right; idx++)
 	{
